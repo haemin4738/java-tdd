@@ -3,7 +3,7 @@ package org.sample;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RqTest {
     @Test
@@ -13,7 +13,8 @@ public class RqTest {
 
         String actionName= rq.getActionName();
 
-        assertEquals("수정", actionName);
+        //assertEquals("수정", actionName);
+        assertThat(actionName).isEqualTo("수정");
     }
 
     @Test
@@ -23,7 +24,8 @@ public class RqTest {
 
         String actionName= rq.getActionName();
 
-        assertEquals("삭제", actionName);
+        //assertEquals("삭제", actionName);
+        assertThat(actionName).isEqualTo("삭제");
     }
     @Test
     @DisplayName("등록?이름=홍길동, getParam()")
@@ -31,7 +33,8 @@ public class RqTest {
         Rq rq  = new Rq("등록?이름=홍길동");
         String name = rq.getParam("이름", "");
 
-        assertEquals("홍길동", name);
+        //assertEquals("홍길동", name);
+        assertThat(name).isEqualTo("홍길동");
     }
 
     @Test
@@ -40,7 +43,8 @@ public class RqTest {
         Rq rq  = new Rq("등록?고향=남원");
         String name = rq.getParam("고향", "");
 
-        assertEquals("남원", name);
+        //assertEquals("남원", name);
+        assertThat(name).isEqualTo("남원");
     }
 
     @Test
@@ -49,7 +53,8 @@ public class RqTest {
         Rq rq  = new Rq("등록?이름=홍길동&고향=남원");
         String name = rq.getParam("고향", "");
 
-        assertEquals("남원", name);
+        //assertEquals("남원", name);
+        assertThat(name).isEqualTo("남원");
     }
 
     @Test
@@ -59,7 +64,8 @@ public class RqTest {
 
         String paramValue = rq.getParam("성별", "");
 
-        assertEquals("남성", paramValue);
+        //assertEquals("남성", paramValue);
+        assertThat(paramValue).isEqualTo("남성");
     }
 
     @Test
@@ -69,7 +75,8 @@ public class RqTest {
 
         String paramValue = rq.getParam("성별", "모름");
 
-        assertEquals("모름", paramValue);
+        //assertEquals("모름", paramValue);
+        assertThat(paramValue).isEqualTo("모름");
     }
 
     @Test
@@ -79,7 +86,8 @@ public class RqTest {
 
         String paramValue = rq.getParam("성별", "모름");
 
-        assertEquals("모름", paramValue);
+        //assertEquals("모름", paramValue);
+        assertThat(paramValue).isEqualTo("모름");
     }
 
     @Test
@@ -89,6 +97,7 @@ public class RqTest {
 
         String paramValue = rq.getParam("성별", "모름");
 
-        assertEquals("모름", paramValue);
+        //assertEquals("모름", paramValue);
+        assertThat(paramValue).isEqualTo("모름");
     }
 }
