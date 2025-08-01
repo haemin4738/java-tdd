@@ -61,4 +61,34 @@ public class RqTest {
 
         assertEquals("남성", paramValue);
     }
+
+    @Test
+    @DisplayName("\"등록?성별=\" : rq.getParam(\"성별\", \"모름\")")
+    void t7() {
+        Rq rq = new Rq("등록?성별=");
+
+        String paramValue = rq.getParam("성별", "모름");
+
+        assertEquals("모름", paramValue);
+    }
+
+    @Test
+    @DisplayName("\"등록?성별\" : rq.getParam(\"성별\", \"모름\")")
+    void t8() {
+        Rq rq = new Rq("등록?성별");
+
+        String paramValue = rq.getParam("성별", "모름");
+
+        assertEquals("모름", paramValue);
+    }
+
+    @Test
+    @DisplayName("\"등록\" : rq.getParam(\"성별\", \"모름\")")
+    void t9() {
+        Rq rq = new Rq("등록");
+
+        String paramValue = rq.getParam("성별", "모름");
+
+        assertEquals("모름", paramValue);
+    }
 }

@@ -12,8 +12,8 @@ public class Rq {
 
 //        params = new HashMap<>();
         //"등록?이름=홍길동&고향=남원" -> "등록", "이름=홍길동&고향=남원"
-        String queryString = cmd.split("\\?", 2)[1];
-
+        String[] cmdBits = cmd.split("\\?", 2);
+        String queryString = cmdBits.length == 2 ? cmdBits[1] : "";
 //        //이름=홍길동&고향=남원
 //        String[] queryStringBits = queryString.split("&");
 //
@@ -30,6 +30,7 @@ public class Rq {
 
         params = Arrays.stream(queryString.split("&"))
                 .map(e -> e.split("=", 2))
+                .filter(e -> e.length == 2 && !e[0].isBlank() && !e[1].isBlank())
                 .collect(Collectors.toMap(e->e[0], e-> e[1]));
     }
 
