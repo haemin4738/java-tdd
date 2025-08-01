@@ -13,16 +13,25 @@ public class Rq {
     }
 
     public String getParam(String name, String defaultValue) {
-        //등록?이름=홍길동&등록?고향=남원
-        String queryString  = cmd.split("\\?", 2)[1];
-        // 이름=홍길동&등록?공향=남원
-        String[] paramsBits = queryString.split("=", 2);
+        //"등록?이름=홍길동&고향=남원" -> "등록", "이름=홍길동&고향=남원"
+        String queryString = cmd.split("\\?", 2)[1];
 
-        String paramName= paramsBits[0];
-        String paramValue = paramsBits[1];
+        //이름=홍길동&고향=남원
+        String[] queryStringBits = queryString.split("&");
 
-        if (!name.equals(paramName)) return defaultValue;
+        // [이름=홍길동, 고향=남원]
+        for (String paramStr  : queryStringBits) {
+            // "이름=홍길동" -> "이름", "홍길동"
+            // "고향=남원" -> "고향", "남원"
+            String[] paramBits = paramStr.split("=", 2);
+            String paramName = paramBits[0];
+            String paramValue = paramBits[1];
 
-        return paramValue;
+            if (name.equals(paramName)) {
+                return paramValue;
+            }
+        }
+
+        return defaultValue;
     }
 }
